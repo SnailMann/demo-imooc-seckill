@@ -8,7 +8,7 @@ spring:
       content-type: text/html
     enabled: true
     encoding: UTF-8
-    mode: HTML5
+    mode: HTML
   datasource:   # druid
     url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
