@@ -1,8 +1,12 @@
 package com.snailmann.seckill.entity.ouput;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CodeMsg {
 	
 	private int code;
@@ -25,14 +29,6 @@ public class CodeMsg {
 	//订单模块 5004XX
 	
 	//秒杀模块 5005XX
-	
-	private CodeMsg( ) {
-	}
-			
-	private CodeMsg( int code,String msg ) {
-		this.code = code;
-		this.msg = msg;
-	}
 
 	
 	public CodeMsg fillArgs(Object... args) {
