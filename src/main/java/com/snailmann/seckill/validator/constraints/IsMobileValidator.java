@@ -1,6 +1,6 @@
 package com.snailmann.seckill.validator.constraints;
 
-import com.snailmann.seckill.util.ValidatorUtil;
+import com.snailmann.seckill.util.ValidatorUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintValidator;
@@ -28,12 +28,12 @@ public class IsMobileValidator implements ConstraintValidator<IsMobile, String> 
     public boolean isValid(String value, ConstraintValidatorContext context) {
 
         if (required) {
-            return ValidatorUtil.isMobile(value);
+            return ValidatorUtils.isMobile(value);
         } else {
             if (StringUtils.isBlank(value)) {
                 return true;
             } else {
-                return ValidatorUtil.isMobile(value);
+                return ValidatorUtils.isMobile(value);
             }
 
         }

@@ -1,8 +1,5 @@
 package com.snailmann.seckill.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.snailmann.seckill.entity.ouput.Result;
 import com.snailmann.seckill.entity.vo.LoginVo;
 import com.snailmann.seckill.service.UserService;
@@ -12,10 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import javax.servlet.http.HttpServletResponse;
+
 
 @Slf4j
 @Controller
@@ -33,13 +28,12 @@ public class LoginController {
 
     @PostMapping("/login/do_login")
     @ResponseBody
-    public Result<Object> doLogin(@Validated LoginVo loginVo) {
+    public Result<Object> doLogin(HttpServletResponse response, @Validated LoginVo loginVo) {
         log.info("login: {}", loginVo.toString());
         //登录
-        userService.login(loginVo);
+        userService.login(response, loginVo);
         return Result.success(true);
     }
-
 
 
 }

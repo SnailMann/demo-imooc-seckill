@@ -1,4 +1,4 @@
-package com.snailmann.seckill.redis.template;
+package com.snailmann.seckill.redis.template.base;
 
 /**
  * 通用缓存key顶层接口，模板模式

@@ -1,7 +1,5 @@
 package com.snailmann.seckill.redis.template.base;
 
-import com.snailmann.seckill.redis.template.KeyPrefix;
-
 /**
  *  模板模式抽象类
  */
@@ -30,7 +28,7 @@ public abstract class AbstractKeyPrefix implements KeyPrefix {
      */
     @Override
     public int expireSeconds() {
-        return 0;
+        return this.expireSeconds;
     }
 
     /**

@@ -3,7 +3,7 @@ package com.snailmann.seckill.controller;
 
 import com.snailmann.seckill.entity.ouput.Result;
 import com.snailmann.seckill.entity.po.UserTest;
-import com.snailmann.seckill.redis.service.RedisService;
+import com.snailmann.seckill.redis.service.RedisHandler;
 import com.snailmann.seckill.redis.template.impl.UserKey;
 import com.snailmann.seckill.service.UserTestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ public class SampleController {
 
 
     private UserTestService userTestService;
-    private final RedisService redisService;
+    private final RedisHandler redisHandler;
 
     @Autowired
-    public SampleController(UserTestService userTestService, RedisService redisService) {
+    public SampleController(UserTestService userTestService, RedisHandler redisHandler) {
         this.userTestService = userTestService;
-        this.redisService = redisService;
+        this.redisHandler = redisHandler;
     }
 
 
@@ -45,14 +45,14 @@ public class SampleController {
 
     @GetMapping("/redis/get")
     public Result<Object> redisGet() {
-        return Result.success(redisService.get(UserKey.getById,"1", Long.class));
+        return Result.success(redisHandler.get(UserKey.getById,"1", Long.class));
     }
 
 
     @GetMapping("/redis/set")
     public Result<Object> redisSet() {
-        redisService.set(UserKey.getById,"2",567);
-        return Result.success(redisService.get(UserKey.getById,"2",String.class));
+        redisHandler.set(UserKey.getById,"2",567);
+        return Result.success(redisHandler.get(UserKey.getById,"2",String.class));
     }
 
 

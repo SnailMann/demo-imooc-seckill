@@ -1,7 +1,7 @@
 package com.snailmann.seckill.redis.service;
 
 import com.alibaba.fastjson.JSON;
-import com.snailmann.seckill.redis.template.KeyPrefix;
+import com.snailmann.seckill.redis.template.base.KeyPrefix;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import redis.clients.jedis.JedisPool;
  * 通用Redis模板方法
  */
 @Component
-public class RedisService {
+public class RedisHandler {
 
     @Autowired
     JedisPool jedisPool;
@@ -46,6 +46,7 @@ public class RedisService {
 
 
     /**
+     * 有前缀和过期时间
      * 根据key插入value
      *
      * @param prefix
