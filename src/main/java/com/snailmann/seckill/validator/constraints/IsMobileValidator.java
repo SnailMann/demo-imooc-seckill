@@ -8,6 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * 手机号码校验器
+ * 这是陪着@IsMobile注解来实现javax参数校验
  */
 public class IsMobileValidator implements ConstraintValidator<IsMobile, String> {
 

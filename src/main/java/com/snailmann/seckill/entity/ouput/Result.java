@@ -51,11 +51,13 @@ public class Result<T> {
         if(codeMsg != null) {
             this.code = codeMsg.getCode();
             this.msg = codeMsg.getMsg();
-            if (t !=null)
+            if (t !=null) {
                 this.data = t;
+            }
         } else {
-            if (t != null)
+            if (t != null) {
                 this.data = t;
+            }
         }
     }
 
