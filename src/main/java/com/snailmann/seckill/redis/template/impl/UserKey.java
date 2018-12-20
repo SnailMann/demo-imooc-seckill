@@ -1,6 +1,6 @@
 package com.snailmann.seckill.redis.template.impl;
 
-import com.snailmann.seckill.redis.template.abs.AbstractKeyPrefix;
+import com.snailmann.seckill.redis.template.base.AbstractKeyPrefix;
 
 public class UserKey extends AbstractKeyPrefix {
 

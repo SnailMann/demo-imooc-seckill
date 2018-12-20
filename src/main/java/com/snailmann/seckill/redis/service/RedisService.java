@@ -28,12 +28,14 @@ public class RedisService {
      * @return
      */
     public <T> T get(KeyPrefix prefix, String key, Class<T> clazz) {
-        try (Jedis jedis = jedisPool.getResource()) { //java7 语法自动close资源
+        //java7 语法自动close资源
+        try (Jedis jedis = jedisPool.getResource()) {
             //prefix + key 拼接
             String realKey = prefix.getPrefix() + key;
             String str = jedis.get(realKey);
-            if (StringUtils.isBlank(str))
+            if (StringUtils.isBlank(str)) {
                 return null;
+            }
             return stringToBean(str, clazz);
         } catch (Exception e) {
             e.getStackTrace();
@@ -56,11 +58,16 @@ public class RedisService {
         try (Jedis jedis = jedisPool.getResource()) {
             //prefix + key
             String readKey = prefix.getPrefix() + key;
-            int seconds = prefix.expireSeconds(); //获得过期时间
-            if (seconds <= 0)  //如果过期时间为0，则代表用于不过期
+            //获得过期时间
+            int seconds = prefix.expireSeconds();
+            //如果过期时间为0，则代表用于不过期
+            if (seconds <= 0) {
                 jedis.set(readKey, beanToString(value));
-            else               //如果过期时间不为0，代表有过期时间
+            }
+           //如果过期时间不为0，代表有过期时间
+            else {
                 jedis.setex(readKey,seconds,beanToString(value));
+            }
             return true;
         } catch (Exception e) {
             e.getStackTrace();
@@ -78,8 +85,9 @@ public class RedisService {
      * @return
      */
     private <T> String beanToString(T value) {
-        if (value == null)
+        if (value == null) {
             return null;
+        }
         Class<?> clazz = value.getClass();
         if (clazz == int.class || clazz == Integer.class) {
             return "" + value;

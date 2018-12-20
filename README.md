@@ -1,4 +1,4 @@
-# Seckill demo 
+# Spring Boot Seckill Demo
 
 ### 两次MD5
 

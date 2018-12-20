@@ -1,4 +1,4 @@
-package com.snailmann.seckill.redis.template.abs;
+package com.snailmann.seckill.redis.template.base;
 
 import com.snailmann.seckill.redis.template.KeyPrefix;
 

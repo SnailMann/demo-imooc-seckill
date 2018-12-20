@@ -7,12 +7,14 @@ import java.util.regex.Pattern;
 
 public class ValidatorUtil {
 
-    private static final Pattern mobile_pattern = Pattern.compile("1\\d{10}");  //1开头，后面跟了10个数字，我们就认为其为手机号
+    //1开头，后面跟了10个数字，我们就认为其为手机号
+    private static final Pattern mobile_pattern = Pattern.compile("1\\d{10}");
 
     public static boolean isMobile(String src) {
 
-        if (StringUtils.isBlank(src))
+        if (StringUtils.isBlank(src)) {
             return false;
+        }
         Matcher m = mobile_pattern.matcher(src);
         return m.matches();
 
