@@ -45,12 +45,13 @@ public class UserService {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        //延长有效期
+        //根据token获取Session信息，里面存放有用户信息
         User user = redisHandler.get(UserKey.token, token, User.class);
 
-        //重新生成（cookie）token，作用就是更新有效期时间
-        if (user != null){
-            addCookie(response, user);
+        //每次执行该方法，意味着有用户请求，所以自动更新token的过期时间
+        //更新有效期时间，即延长时间
+        if (user != null) {
+            addCookie(response, token, user);
         }
 
         return user;
@@ -61,8 +62,8 @@ public class UserService {
     /**
      * 登录,判断是否允许登录
      *
-     * @param loginParam  传入的登录信息
-     * @param response 为返回Cookie
+     * @param loginParam 传入的登录信息
+     * @param response   为返回Cookie
      * @return 登录成功返回true ,登录失败返回false
      */
     public boolean login(HttpServletResponse response, LoginParam loginParam) {
@@ -101,7 +102,9 @@ public class UserService {
         /**
          * 4. 生成Cookie
          */
-        addCookie(response, user);
+        String token = UUIDUtils.createToken();
+        //添加到Cookie中，并将session缓存到redis中
+        addCookie(response, token, user);
 
 
         return true;
@@ -110,15 +113,17 @@ public class UserService {
 
     /**
      * 实现分布式Session
-     * 生成token,配置cookie
+     * 生成token,配置cookie，将session信息放入redis缓存中
      * 以token为键，用户信息为值存放远程缓存中
      *
      * @param response
      * @param user
+     * @param token    沿用传入的token
      */
-    private void addCookie(HttpServletResponse response, User user) {
-        String token = UUIDUtils.createToken();
+    private void addCookie(HttpServletResponse response, String token, User user) {
+
         UserKey userKey = UserKey.token;
+        //缓存到redis中
         redisHandler.set(userKey, token, user);
         //配置Cookie
         Cookie cookie = new Cookie(COOKIE_NAME_TOKEN, token);

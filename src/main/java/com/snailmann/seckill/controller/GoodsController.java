@@ -35,10 +35,10 @@ public class GoodsController {
      * @param model
      * @return
      */
-    @RequestMapping("/to_list")
+    @RequestMapping("/tolist")
     public String toList(User user,Model model) {
         model.addAttribute("user", user);
-        return "goods_list";
+        return "goods-list";
     }
 
 
