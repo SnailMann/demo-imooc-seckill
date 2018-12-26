@@ -1,12 +1,16 @@
 package com.snailmann.seckill.controller;
 
 import com.snailmann.seckill.entity.User;
+import com.snailmann.seckill.entity.dto.GoodsDto;
 import com.snailmann.seckill.redis.service.RedisHandler;
+import com.snailmann.seckill.service.GoodsService;
 import com.snailmann.seckill.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 商品goods控制层
@@ -22,6 +26,9 @@ public class GoodsController {
     @Autowired
     RedisHandler redisHandler;
 
+    @Autowired
+    GoodsService goodsService;
+
     /**
      * 为了兼容多方式传递携带的token
      *
@@ -35,11 +42,20 @@ public class GoodsController {
      * @param model
      * @return
      */
-    @RequestMapping("/tolist")
+    @RequestMapping("/toList")
     public String toList(User user,Model model) {
         model.addAttribute("user", user);
+
+        //查询商品列表
+        List<GoodsDto> goodsDtoList = goodsService.listSeckillGoods();
+        model.addAttribute("goodsDtoList", goodsDtoList);
+
         return "goods-list";
     }
 
+    @RequestMapping("/toDetail")
+    public String toDetail(){
+        return null;
+    }
 
 }
