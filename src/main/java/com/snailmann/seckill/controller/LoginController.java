@@ -6,6 +6,7 @@ import com.snailmann.seckill.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +44,7 @@ public class LoginController {
      */
     @PostMapping("login/doLogin")
     @ResponseBody
-    public Result<Object> doLogin(HttpServletResponse response,  LoginParam loginVo) {
+    public Result<Object> doLogin(HttpServletResponse response,  @Validated @RequestBody LoginParam loginVo) {
         log.info("login: {}", loginVo.toString());
         //登录
         userService.login(response, loginVo);

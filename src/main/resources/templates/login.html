@@ -70,14 +70,16 @@
         var salt = g_passsword_salt;
         var str = ""+salt.charAt(0)+salt.charAt(2) + inputPass +salt.charAt(5) + salt.charAt(4);
         var password = md5(str); //用户输入的明文密码md5加密
-
+        var param = {
+                mobile:$("#mobile").val(),
+                password: password
+        };
         $.ajax({
             url: "/login/doLogin",
             type: "POST",
-            data:{
-                mobile:$("#mobile").val(),
-                password: password
-            },
+            dataType: "JSON",//预期服务器返回的数据类型
+            contentType: "application/json",
+            data:JSON.stringify(param),
             success:function(data){
                 layer.closeAll();
                 if(data.code === 0){
