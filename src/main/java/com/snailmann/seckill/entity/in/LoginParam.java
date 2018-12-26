@@ -1,4 +1,4 @@
-package com.snailmann.seckill.entity.vo;
+package com.snailmann.seckill.entity.in;
 
 import com.snailmann.seckill.validator.constraints.IsMobile;
 import lombok.Data;
@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class LoginVo {
+public class LoginParam {
 
     @NotNull(message = "手机号不允许为空")
     @IsMobile

@@ -2,9 +2,9 @@ package com.snailmann.seckill.service;
 
 
 import com.snailmann.seckill.dao.UserMapper;
-import com.snailmann.seckill.entity.ouput.CodeMsg;
-import com.snailmann.seckill.entity.po.User;
-import com.snailmann.seckill.entity.vo.LoginVo;
+import com.snailmann.seckill.entity.template.CodeMsg;
+import com.snailmann.seckill.entity.User;
+import com.snailmann.seckill.entity.in.LoginParam;
 import com.snailmann.seckill.execption.GlobalException;
 import com.snailmann.seckill.redis.service.RedisHandler;
 import com.snailmann.seckill.redis.template.impl.UserKey;
@@ -50,7 +50,7 @@ public class UserService {
 
         //重新生成（cookie）token，作用就是更新有效期时间
         if (user != null){
-            createToken(response, user);
+            addCookie(response, user);
         }
 
         return user;
@@ -61,21 +61,21 @@ public class UserService {
     /**
      * 登录,判断是否允许登录
      *
-     * @param loginVo  传入的登录信息
+     * @param loginParam  传入的登录信息
      * @param response 为返回Cookie
      * @return 登录成功返回true ,登录失败返回false
      */
-    public boolean login(HttpServletResponse response, LoginVo loginVo) {
+    public boolean login(HttpServletResponse response, LoginParam loginParam) {
 
 
         /**
          * 1. 如果没有数据则为服务器错误
          */
-        if (loginVo == null) {
+        if (loginParam == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        String mobile = loginVo.getMobile();
-        String formPass = loginVo.getPassword();
+        String mobile = loginParam.getMobile();
+        String formPass = loginParam.getPassword();
 
         /**
          * 2. 判断手机号是否存在
@@ -101,7 +101,7 @@ public class UserService {
         /**
          * 4. 生成Cookie
          */
-        createToken(response, user);
+        addCookie(response, user);
 
 
         return true;
@@ -116,7 +116,7 @@ public class UserService {
      * @param response
      * @param user
      */
-    private void createToken(HttpServletResponse response, User user) {
+    private void addCookie(HttpServletResponse response, User user) {
         String token = UUIDUtils.createToken();
         UserKey userKey = UserKey.token;
         redisHandler.set(userKey, token, user);

@@ -1,4 +1,4 @@
-package com.snailmann.seckill.entity.ouput;
+package com.snailmann.seckill.entity.template;
 
 import lombok.Data;
 

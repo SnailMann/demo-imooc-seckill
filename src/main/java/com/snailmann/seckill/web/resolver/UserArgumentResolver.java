@@ -1,11 +1,11 @@
 package com.snailmann.seckill.web.resolver;
 
-import com.snailmann.seckill.entity.po.User;
-import com.snailmann.seckill.redis.service.RedisHandler;
+import com.snailmann.seckill.entity.User;
 import com.snailmann.seckill.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 为了重写web层对参数的处理
  */
+@Component
 public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
 
@@ -53,7 +54,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
-        HttpServletResponse response = webRequest.getNativeRequest(HttpServletResponse.class);
+        HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
 
         String paramToken = request.getParameter("token");
         String headerToken = request.getHeader("token");

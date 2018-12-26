@@ -1,6 +1,6 @@
 spring:
-
-  thymeleaf:   # themeleaf
+  # 模板引擎
+  thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
     cache: false
@@ -9,7 +9,8 @@ spring:
     enabled: true
     encoding: UTF-8
     mode: HTML
-  datasource:   # druid
+  # 数据库
+  datasource:
     url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
@@ -29,7 +30,8 @@ spring:
     dbcp2:
       pool-prepared-statements: true
       max-open-prepared-statements: 20
-  redis:   # redis
+  # redis缓存
+  redis:
     host: 127.0.0.1
     port: 6379
 

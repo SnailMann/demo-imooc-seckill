@@ -1,9 +1,8 @@
 package com.snailmann.seckill.execption;
 
-import com.snailmann.seckill.entity.ouput.CodeMsg;
+import com.snailmann.seckill.entity.template.CodeMsg;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.ibatis.annotations.Select;
 
 /**
  * 全局异常
