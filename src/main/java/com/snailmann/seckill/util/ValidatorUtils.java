@@ -5,6 +5,10 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 检验工具类
+ * @author liwenjie
+ */
 public class ValidatorUtils {
 
     //1开头，后面跟了10个数字，我们就认为其为手机号

@@ -1,11 +1,12 @@
 package com.snailmann.seckill.execption;
 
-import com.snailmann.seckill.entity.template.CodeMsg;
+import com.snailmann.seckill.constant.CodeMsg;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * 全局异常
+ * @author liwenjie
  */
 public class GlobalException extends RuntimeException {
 

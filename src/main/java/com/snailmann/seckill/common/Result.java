@@ -1,5 +1,6 @@
-package com.snailmann.seckill.entity.template;
+package com.snailmann.seckill.common;
 
+import com.snailmann.seckill.constant.CodeMsg;
 import lombok.Data;
 
 @Data

@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+/**
+ * URL拦截器，输出URL
+ * @author liwenjie
+ */
 @Component
 public class URLFilte implements Filter {
     @Override

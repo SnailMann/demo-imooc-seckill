@@ -1,6 +1,6 @@
 package com.snailmann.seckill.controller;
 
-import com.snailmann.seckill.entity.template.Result;
+import com.snailmann.seckill.common.Result;
 import com.snailmann.seckill.entity.in.LoginParam;
 import com.snailmann.seckill.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * 登录控制层
+ * @author liwenjie
+ */
 @Slf4j
 @Controller
-
 public class LoginController {
 
     @Autowired

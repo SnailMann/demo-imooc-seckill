@@ -45,3 +45,9 @@
 
 - 如果我们将所有的操作每次都放在Controller去处理token,那么有多少个请求方法，就需要多少重复的token处理代码，这样非常的麻烦
 当然你也会说，可以通过aop去实现，但是这还是不够的优雅。所以我们可以通过重写一些底层的东西去完成这样的操作
+
+### HandlerMethodArgumentResolver - 自定义参数处理器
+
+- 在Controller层，我们看到方法参数中都有User,但是前端并没有传入User，那么这个user是怎么获取到值的呢？
+这里其实是通过自定义参数处理器，比如我们的UserArgumentResolver，可以做到，前端传入token, 参数处理器拦截到请求，获取token,根据token去redis捞取User信息，最后
+将获取的User信息注入到我们方法的参数中

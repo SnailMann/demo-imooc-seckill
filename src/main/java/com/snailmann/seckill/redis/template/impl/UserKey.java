@@ -2,6 +2,10 @@ package com.snailmann.seckill.redis.template.impl;
 
 import com.snailmann.seckill.redis.template.base.AbstractKeyPrefix;
 
+/**
+ * 用户信息放入缓存的前缀信息
+ * @author liwenjie
+ */
 public class UserKey extends AbstractKeyPrefix {
 
     /**
@@ -9,7 +13,7 @@ public class UserKey extends AbstractKeyPrefix {
      */
     public static UserKey getById = new UserKey("id");
     public static UserKey getByName = new UserKey("name");
-    public static UserKey token = getUserKey(30,"token");
+    public static UserKey token = getUserKey(3600,"token");
 
 
     /**

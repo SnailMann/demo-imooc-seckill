@@ -1,7 +1,8 @@
 package com.snailmann.seckill.redis.template.base;
 
 /**
- *  模板模式抽象类
+ *  键前缀抽象类（模板模式）
+ * @author liwenjie
  */
 public abstract class AbstractKeyPrefix implements KeyPrefix {
 

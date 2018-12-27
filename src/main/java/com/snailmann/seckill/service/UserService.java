@@ -2,7 +2,7 @@ package com.snailmann.seckill.service;
 
 
 import com.snailmann.seckill.dao.UserMapper;
-import com.snailmann.seckill.entity.template.CodeMsg;
+import com.snailmann.seckill.constant.CodeMsg;
 import com.snailmann.seckill.entity.User;
 import com.snailmann.seckill.entity.in.LoginParam;
 import com.snailmann.seckill.execption.GlobalException;
@@ -18,6 +18,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * 用户业务层
+ * @author liwenjie
+ */
 @Service
 public class UserService {
 

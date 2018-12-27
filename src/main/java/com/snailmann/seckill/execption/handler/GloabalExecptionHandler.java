@@ -1,8 +1,8 @@
 package com.snailmann.seckill.execption.handler;
 
 
-import com.snailmann.seckill.entity.template.CodeMsg;
-import com.snailmann.seckill.entity.template.Result;
+import com.snailmann.seckill.constant.CodeMsg;
+import com.snailmann.seckill.common.Result;
 import com.snailmann.seckill.execption.GlobalException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 自定义全局异常处理器
  * 统一异常返回格式
+ * @author liwenjie
  */
 @ControllerAdvice
 @ResponseBody

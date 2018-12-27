@@ -10,7 +10,8 @@ import redis.clients.jedis.JedisPool;
 
 
 /**
- * 通用Redis模板方法
+ * Redis通用操作
+ * @author liwenjie
  */
 @Component
 public class RedisHandler {
