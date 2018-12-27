@@ -1,17 +1,17 @@
 # Spring Boot Seckill Demo
 
+## 实现秒杀功能
+----
 
 ### 通用返回对象
 
 - Result : 通用返回对象
 - CodeMsg : 通用返回信息
 
-
 ### 两次MD5
 
 1. 用户端：Password = MD5(明文 + 固定Salt)   => 防止用户密码明文方式在网络上传输
 2. 服务端：Password = MD5(用户输入 + 随机Salt)
-
 
 
 ### 自定义JSR303参数校验(注解，实现类)
@@ -51,3 +51,19 @@
 - 在Controller层，我们看到方法参数中都有User,但是前端并没有传入User，那么这个user是怎么获取到值的呢？
 这里其实是通过自定义参数处理器，比如我们的UserArgumentResolver，可以做到，前端传入token, 参数处理器拦截到请求，获取token,根据token去redis捞取User信息，最后
 将获取的User信息注入到我们方法的参数中
+
+
+## JMeter压测
+----
+
+### JMeter入门
+
+- 添加线程组(线程数，Ramp-Up(0则代表所有线程数同时启动))
+- 添加监听器->聚合报告，图形结果，用表格查看结果(Throughput(qps)一秒多少个线程正确执行)
+- 线程组右键->添加取样器->http请求
+
+### 自定义变量模拟多用户
+
+### JMeter命令行使用
+
+### Redis压测工具redis-benchmark

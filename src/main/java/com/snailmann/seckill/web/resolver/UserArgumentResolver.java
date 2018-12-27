@@ -60,14 +60,14 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         String headerToken = request.getHeader("token");
         String cookieToken = "";
         Cookie[] cookies = request.getCookies();
-
-
-        for (Cookie cookie : cookies) {
-            if ("token".equals(cookie.getName())) {
-                cookieToken = cookie.getValue();
+        if (cookies != null){
+            for (Cookie cookie : cookies) {
+                if ("token".equals(cookie.getName())) {
+                    cookieToken = cookie.getValue();
+                }
             }
-
         }
+
 
         //如果所有形式的传递都没有token，返回登录页面
         if (StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(headerToken) && StringUtils.isEmpty(paramToken)) {
