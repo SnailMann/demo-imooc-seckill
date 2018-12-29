@@ -66,4 +66,8 @@
 
 ### JMeter命令行使用
 
+- 在windows上录好jmx
+- 将jmx文件上传到linux系统中，使用命令行： sh jmeter.sh -n -t xxx.jmx -l result.jtl  ,最后得到result.jtl结果
+- 把result.jtl下载到windows，导入到jmeter
+
 ### Redis压测工具redis-benchmark
