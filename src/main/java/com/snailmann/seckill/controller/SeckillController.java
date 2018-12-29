@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * 商品控制层
+ * 秒杀控制层
  * @author liwenjie
  */
 @Controller
