@@ -42,5 +42,5 @@ public interface GoodsMapper {
      * @param stockCount
      */
     @Update("update seckill_business_goods set stock_count = #{stockCount} where goods_id = #{goodsId} and stock_count > 0")
-    void reduceStock(@Param("goodsId") Long goodsId,@Param("stockCount") Integer stockCount);
+    int reduceStock(@Param("goodsId") Long goodsId,@Param("stockCount") Integer stockCount);
 }

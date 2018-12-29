@@ -4,7 +4,7 @@ package com.snailmann.seckill.redis.template.base;
  *  键前缀抽象类（模板模式）
  * @author liwenjie
  */
-public abstract class AbstractKeyPrefix implements KeyPrefix {
+public abstract class BaseKeyPrefix implements KeyPrefix {
 
     private int expireSeconds;
     private String prefix;
@@ -13,12 +13,12 @@ public abstract class AbstractKeyPrefix implements KeyPrefix {
      * key永远不过期的构造函数
      * @param prefix
      */
-    public AbstractKeyPrefix(String prefix) {
+    public BaseKeyPrefix(String prefix) {
         this.expireSeconds = 0;
         this.prefix = prefix;
     }
 
-    public AbstractKeyPrefix(int expireSeconds, String prefix) {
+    public BaseKeyPrefix(int expireSeconds, String prefix) {
         this.expireSeconds = expireSeconds;
         this.prefix = prefix;
     }

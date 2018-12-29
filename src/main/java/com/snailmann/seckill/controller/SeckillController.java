@@ -1,18 +1,24 @@
 package com.snailmann.seckill.controller;
 
 import com.snailmann.seckill.entity.BusinessOrder;
-import com.snailmann.seckill.entity.Order;
 import com.snailmann.seckill.entity.User;
 import com.snailmann.seckill.entity.dto.GoodsDto;
 import com.snailmann.seckill.constant.CodeMsg;
+import com.snailmann.seckill.rabbitmq.MsgSender;
+import com.snailmann.seckill.rabbitmq.bean.SeckillMessage;
+import com.snailmann.seckill.redis.service.RedisHandler;
+import com.snailmann.seckill.redis.template.key.Goodskey;
 import com.snailmann.seckill.service.GoodsService;
 import com.snailmann.seckill.service.OrderService;
 import com.snailmann.seckill.service.SeckillService;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * 秒杀控制层
@@ -20,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("/seckill")
-public class SeckillController {
+public class SeckillController implements InitializingBean {
 
     @Autowired
     GoodsService goodsService;
@@ -28,6 +34,10 @@ public class SeckillController {
     OrderService orderService;
     @Autowired
     SeckillService seckillService;
+    @Autowired
+    RedisHandler redisHandler;
+    @Autowired
+    MsgSender msgSender;
 
     /**
      * 根据商品Id对某商品进行秒杀操作
@@ -44,33 +54,42 @@ public class SeckillController {
         if (user == null){
             return "login";
         }
-        //1. 第一判断是否有库存
-        GoodsDto goodsDto = goodsService.getGoodsDto(goodsId);
-        //获得库存
-        int stockCount = goodsDto.getStockCount();
-        if (stockCount <= 0 ){
-            //如果没有，则代表该商品已经没有库存，已经被秒杀完了
+
+        //1. 系统初始化，把商品库存数据加载到Redis - afterPropertiesSet()方法
+        //2. 收到请求，Redis预减库存，库存不足，直接返回秒杀失败，否则进入3
+        Integer count = redisHandler.get(Goodskey.getSeckillGoodsStockCount,goodsId,Integer.class);
+        if (count < 0){
             model.addAttribute("errmsg", CodeMsg.SECKILL_OVER.getMsg());
             return "seckill-fail";
         }
-
-        //2. 如果有库存则判断是否已经秒杀到了
-        //根据用户id和商品id获取是否有秒杀订单生产
+        //判断已经有秒杀订单
         BusinessOrder businessOrder = orderService.getSeckillOrder(goodsId,user.getId());
         if (businessOrder != null){
-            //如果已经存在，则说明重复秒杀了，不允许重复秒杀
             model.addAttribute("errmsg",CodeMsg.REPEATE_SECKILL.getMsg());
             return "seckill-fail";
         }
-
-        //3. 以上异常判断完毕，则代表可以进行秒杀
-        //减库存，下订单，写入秒杀订单
-        Order order = seckillService.doSeckill(user,goodsDto);
-        model.addAttribute("order", order);
-        model.addAttribute("goodsDto", goodsDto);
-
-        return "order-detail";
-
+        //3. 请求入队，立即返回排队中
+        SeckillMessage seckillMessage = new SeckillMessage();
+        seckillMessage.setUser(user);
+        seckillMessage.setGoodsId(Long.valueOf(goodsId));
+        msgSender.sendSeckillMsg(seckillMessage);
+        model.addAttribute("successmsg","排队中");
+        //入队成功，返回排队中
+        return "seckill-wait";
+        //4. 请求出队，生成订单，减少库存
+        //5. 客户端轮询，是否秒杀成功
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        List<GoodsDto> goodsDtoList = goodsService.listGoodsDto();
+        if (goodsDtoList == null){
+            return;
+        }
+        goodsDtoList.forEach(goodsDto -> {
+            //将商品的库存插入到缓存中,key为goods-count-goodsId
+            redisHandler.set(Goodskey.getSeckillGoodsStockCount,""+goodsDto.getId(),goodsDto.getStockCount());
+        });
+
+    }
 }

@@ -29,10 +29,17 @@ public class SeckillService {
     @Transactional(rollbackFor = Exception.class)
     public Order doSeckill(User user, GoodsDto goodsDto){
         //减库存
-        goodsService.reduceStock(goodsDto);
-        //下订单,写入秒杀订单
-        Order order = orderService.createOrder(user,goodsDto);
+        boolean isSuccess = goodsService.reduceStock(goodsDto);
 
-        return order;
+        //下订单,写入秒杀订单
+        if (isSuccess){
+            //如果减库存成功，才能下订单
+            Order order = orderService.createOrder(user,goodsDto);
+            return order;
+        } else {
+            //如果减库存失败，则返回null,交给调用方判断
+            return null;
+        }
+
     }
 }

@@ -7,7 +7,7 @@ import com.snailmann.seckill.entity.User;
 import com.snailmann.seckill.entity.in.LoginParam;
 import com.snailmann.seckill.execption.GlobalException;
 import com.snailmann.seckill.redis.service.RedisHandler;
-import com.snailmann.seckill.redis.template.impl.UserKey;
+import com.snailmann.seckill.redis.template.key.UserKey;
 import com.snailmann.seckill.util.MD5Utils;
 import com.snailmann.seckill.util.UUIDUtils;
 import org.apache.commons.lang3.StringUtils;

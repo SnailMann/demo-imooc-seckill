@@ -41,7 +41,8 @@ public class GoodsService {
      * 减库存操作
      * @param goodsDto
      */
-    public void reduceStock(GoodsDto goodsDto) {
-        goodsMapper.reduceStock(goodsDto.getId(),goodsDto.getStockCount() - 1);
+    public boolean reduceStock(GoodsDto goodsDto) {
+        int flag = goodsMapper.reduceStock(goodsDto.getId(),goodsDto.getStockCount() - 1);
+        return flag > 0;
     }
 }

@@ -34,6 +34,27 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
+  # rabbitmq
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 10      # 消费者数量
+        max-concurrency: 10  # 消费者最大数量
+        auto-startup: true   # 自动启动
+        default-requeue-rejected: true # 如果消费失败，则立即加入队列
+        prefetch: 1
+    template:
+      retry:
+        enabled: true  # 队列满了，发布者发不出去，是否重试
+        initial-interval: 1000ms  # 重试间隔1s
+        max-interval: 10000ms # 最大重试间隔时间为3s
+        max-attempts: 3   # 最大重试次数为3次
+        multiplier: 1 # 如果这里为2，那么第一次重试等1s，第二次就是1 * 2s 累计，知道>= max-interval
 
 # mybaits
 mybatis:
@@ -43,7 +64,6 @@ mybatis:
     default-fetch-size: 100
     default-statement-timeout: 30
   mapper-locations: classpath:mapper/**/*.xml
-
 
 
 

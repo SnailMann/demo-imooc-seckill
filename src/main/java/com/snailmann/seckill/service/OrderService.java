@@ -54,12 +54,13 @@ public class OrderService {
         //新建未付款订单
         order.setStatus(OrderEnum.NEW.getStatus());
         order.setUserId(user.getId());
-        long orderId = orderMapper.insert(order);
-
+        //不要long orderId去接，SelectKey是把值插入到order对象中的
+     /*   long orderId = orderMapper.insert(order);*/
+        orderMapper.insert(order);
         //2. 秒杀订单信息
         BusinessOrder businessOrder = new BusinessOrder();
         businessOrder.setGoodsId(goodsDto.getId());
-        businessOrder.setOrderId(orderId);
+        businessOrder.setOrderId(order.getId());
         businessOrder.setUserId(user.getId());
         orderMapper.insertBusinessOrder(businessOrder);
 
