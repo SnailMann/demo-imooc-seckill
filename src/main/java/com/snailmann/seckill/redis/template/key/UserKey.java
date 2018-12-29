@@ -1,12 +1,12 @@
 package com.snailmann.seckill.redis.template.impl;
 
-import com.snailmann.seckill.redis.template.base.AbstractKeyPrefix;
+import com.snailmann.seckill.redis.template.base.BaseKeyPrefix;
 
 /**
  * 用户信息放入缓存的前缀信息
  * @author liwenjie
  */
-public class UserKey extends AbstractKeyPrefix {
+public class UserKey extends BaseKeyPrefix {
 
     /**
      * test
