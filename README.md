@@ -13,6 +13,12 @@
 <img src = "resource/img/doLogin.png">
 </center>
 
+<center>
+
+ ![image](https://github.com/SnailMann/demo-imooc-seckill/blob/master/resource/img/doLogin.png)
+
+</center>
+
 ## 实现秒杀功能
 ----
 
