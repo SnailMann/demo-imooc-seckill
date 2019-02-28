@@ -1,7 +1,7 @@
 # Spring Boot Seckill Demo
 
 ## 流程
-----
+
 
 1. 浏览器输入http://localhost:8080/login/toLogin 跳转到登录页面
 2. 账号(手机号)：`13750091178` 密码：`123456`
@@ -9,18 +9,11 @@
 
 ### 登录验证
 [登录验证流程图](resource/img/doLogin.png)
-<center>
+<div align=center>
 <img src = "resource/img/doLogin.png">
-</center>
-
-<center>
-
- ![image](https://github.com/SnailMann/demo-imooc-seckill/blob/master/resource/img/doLogin.png)
-
-</center>
+</div>
 
 ## 实现秒杀功能
-----
 
 ### 通用返回对象
 
@@ -73,7 +66,7 @@
 
 
 ## JMeter压测
-----
+
 
 ### JMeter入门
 
@@ -93,7 +86,7 @@
 
 
 ## 页面优化技术
-----
+
 
 - 页面缓存 + URL缓存 + 对象缓存
 - 页面静态化(所有页面都是html)，前后端分离
@@ -122,7 +115,7 @@
 
 
 ## 服务端秒杀优化
-----
+
 
 - 接口优化
 
