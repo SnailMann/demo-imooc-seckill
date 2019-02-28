@@ -1,5 +1,18 @@
 # Spring Boot Seckill Demo
 
+## 流程
+----
+
+1. 浏览器输入http://localhost:8080/login/toLogin 跳转到登录页面
+2. 账号(手机号)：`13750091178` 密码：`123456`
+3. 剩下就看自己了
+
+### 登录验证
+[登录验证流程图](resource/img/doLogin.png)
+<center>
+<img src = "resource/img/doLogin.png">
+</center>
+
 ## 实现秒杀功能
 ----
 

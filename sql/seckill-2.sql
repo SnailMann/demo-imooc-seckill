@@ -16,7 +16,7 @@ CREATE TABLE `seckill_business_goods` (
   `start_date` datetime DEFAULT NULL COMMENT '秒杀开始时间',
   `end_date` datetime DEFAULT NULL COMMENT '秒杀结束时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='要秒杀的商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='要秒杀的商品表';
 
 #
 # Data for table "seckill_business_goods"
@@ -35,7 +35,7 @@ CREATE TABLE `seckill_business_order` (
   `order_id` bigint(20) DEFAULT NULL COMMENT '订单id',
   `goods_id` bigint(20) DEFAULT NULL COMMENT '商品id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='秒杀订单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='秒杀订单表';
 
 #
 # Data for table "seckill_business_order"
@@ -56,7 +56,7 @@ CREATE TABLE `seckill_goods` (
   `goods_price` decimal(10,2) DEFAULT '0.00' COMMENT '商品价格',
   `goods_stock` int(11) DEFAULT '0' COMMENT '商品库存，-1表示无穷，没有限制',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='商品信息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='商品信息表';
 
 #
 # Data for table "seckill_goods"
@@ -82,7 +82,7 @@ CREATE TABLE `seckill_order` (
   `create_date` datetime DEFAULT NULL COMMENT '下单时间',
   `pay_date` datetime DEFAULT NULL COMMENT '支付时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='商品订单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='商品订单表';
 
 #
 # Data for table "seckill_order"
@@ -104,10 +104,10 @@ CREATE TABLE `seckill_user` (
   `last_login_date` datetime DEFAULT NULL COMMENT '上次登录时间',
   `login_count` int(11) DEFAULT '0' COMMENT '登录次数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='用户表';
 
 #
 # Data for table "seckill_user"
 #
 
-INSERT INTO `seckill_user` VALUES (13750091124,'Jerry','6e0a7fe692684372437c9e508508990d','1a2b3c4d','123','2017-09-22 10:32:27','2017-09-22 10:32:29',1);
+INSERT INTO `seckill_user` VALUES (13750091178,'Jerry','6e0a7fe692684372437c9e508508990d','1a2b3c4d','123','2017-09-22 10:32:27','2017-09-22 10:32:29',1);
