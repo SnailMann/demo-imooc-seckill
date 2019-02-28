@@ -13,6 +13,11 @@
 <img src = "resource/img/doLogin.png">
 </div>
 
+[秒杀流程图](resource/img/doSeckill.png)
+<div align=center>
+<img src = "resource/img/doSeckill.png">
+</div>
+
 ## 实现秒杀功能
 
 ### 通用返回对象
