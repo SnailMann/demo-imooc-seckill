@@ -110,4 +110,4 @@ CREATE TABLE `seckill_user` (
 # Data for table "seckill_user"
 #
 
-INSERT INTO `seckill_user` VALUES (13750091124,'Jerry','6e0a7fe692684372437c9e508508990d','1a2b3c4d','123','2017-09-22 10:32:27','2017-09-22 10:32:29',1);
+INSERT INTO `seckill_user` VALUES (13750091178,'Jerry','6e0a7fe692684372437c9e508508990d','1a2b3c4d','123','2017-09-22 10:32:27','2017-09-22 10:32:29',1);
