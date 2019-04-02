@@ -15,7 +15,7 @@ public class IsMobileValidator implements ConstraintValidator<IsMobile, String> 
     private boolean required = false;
 
     /**
-     * 初始化方法
+     * 初始化方法，可以获得注解中的属性
      *
      * @param constraintAnnotation
      */
@@ -24,6 +24,13 @@ public class IsMobileValidator implements ConstraintValidator<IsMobile, String> 
         required = constraintAnnotation.required();
     }
 
+    /**
+     * 验证
+     *
+     * @param value
+     * @param context
+     * @return
+     */
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
 

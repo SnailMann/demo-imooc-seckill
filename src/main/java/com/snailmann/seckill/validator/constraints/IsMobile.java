@@ -17,6 +17,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = {IsMobileValidator.class})
 /**
  * 自定义注解IsMobile
+ * 1. 四个属性都是固定的，可以自行添加属性
+ * 2. 记得要指向实现类
  */
 public @interface IsMobile {
 

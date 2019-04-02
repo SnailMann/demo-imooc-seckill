@@ -19,6 +19,13 @@
 - IsMobile注解
 - IsMobileValidator实现类
 
+```java
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+```
+
 
 ### 自定义全局异常处理
 
